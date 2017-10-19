@@ -6,6 +6,7 @@ require.config({
     baseUrl: 'app',
     paths: {
          library: '../library',
+         knowledgePoint:'./knowledge-point'
     }
 });
 /*
@@ -14,14 +15,18 @@ require.config({
     monkey-->mk
 */
 require([
+    'knowledgePoint/this',
     'library/polyfill','library/getJSON'
-],function() {
+    
+],function(This) {
     getJSON("./test-config.json").then(function(json) {
        console.log('Contents: ' + json);
        }, function(error) {
        console.error('出错了', error);
     });
    // mk.init();   
+
+   This.init();
 
    document.getElementById('root').addEventListener('click',function(event){
 	     console.log(event.target);
